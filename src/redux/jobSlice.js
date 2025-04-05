@@ -26,8 +26,11 @@ const jobSlice = createSlice({
     importJobs: (state, action) => {
       state.jobs = [...state.jobs, ...action.payload];
     },
+    setJobs: (state, action) => {
+      state.jobs = action.payload;
+    }
   },
 });
 
-export const { addJob, deleteJob, updateJob, clearJobs, importJobs } = jobSlice.actions;
+export const { addJob, deleteJob, updateJob, clearJobs, importJobs,setJobs } = jobSlice.actions;
 export default jobSlice.reducer;

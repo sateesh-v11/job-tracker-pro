@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     isLoggedIn: false,
     user: null,
-    resumeUrl: "",
+    resumeUrl: localStorage.getItem("resumeUrl") || "",
 };
 
 const authSlice = createSlice({
@@ -25,7 +25,12 @@ const authSlice = createSlice({
         },
         setResumeUrl: (state, action) => {
             state.resumeUrl = action.payload;
-          }
+            if (action.payload) {
+              localStorage.setItem("resumeUrl", action.payload);
+            } else {
+              localStorage.removeItem("resumeUrl");
+            }
+          },
     },
 });
 

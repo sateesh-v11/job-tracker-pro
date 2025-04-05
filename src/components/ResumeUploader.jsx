@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setResumeUrl } from "../redux/authSlice"; // ✅ Adjust this if in jobSlice
+import { setResumeUrl } from "../redux/authSlice";
 
 const ResumeUploader = () => {
   const dispatch = useDispatch();
@@ -26,20 +26,29 @@ const ResumeUploader = () => {
           if (!error && result.event === "success") {
             const url = result.info.secure_url;
             console.log("Uploaded File URL:", url);
-
             setUploadedUrl(url);
-            dispatch(setResumeUrl(url)); // ✅ Store in Redux
+            dispatch(setResumeUrl(url));
             setIsUploaded(true);
           }
         }
       );
 
-      document.getElementById("upload-btn").addEventListener("click", () => {
-        cloudinaryWidget.open();
-      });
+      const uploadButton = document.getElementById("upload-btn");
+      if (uploadButton) {
+        uploadButton.addEventListener("click", () => {
+          cloudinaryWidget.open();
+        });
+      }
     };
 
     document.body.appendChild(script);
+
+    return () => {
+      const uploadButton = document.getElementById("upload-btn");
+      if (uploadButton) {
+        uploadButton.removeEventListener("click", () => {});
+      }
+    };
   }, [dispatch]);
 
   return (

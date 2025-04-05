@@ -3,6 +3,7 @@ import JobForm from "../components/JobForm";
 import JobList from "../components/JobList";
 import { useDispatch } from "react-redux";
 import { clearJobs } from "../redux/jobSlice";
+import ResumeViewer from "../components/ResumeViewer";
 
 const Dashboard = () => {
   const [editingJob, setEditingJob] = useState(null);
@@ -22,6 +23,9 @@ const Dashboard = () => {
   return (
     <div className="container mx-auto px-4 py-6">
       <h1 className="text-3xl font-bold text-center mb-6">Job Tracker Pro</h1>
+
+      {/* ✅ Resume upload and preview section */}
+      {/* <ResumeViewer /> */}
 
       <JobForm editingJob={editingJob} setEditingJob={setEditingJob} />
 

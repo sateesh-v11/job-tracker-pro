@@ -53,7 +53,9 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {isModalOpen && <ResumeModal onClose={() => setIsModalOpen(false)} />}
+      {(isLoggedIn && isModalOpen) && (
+        <ResumeModal onClose={() => setIsModalOpen(false)} />
+      )}
     </>
   );
 };
